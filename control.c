@@ -6,7 +6,7 @@
 #define sizeof_first_array(x) (sizeof(x)/sizeof(x[0]))
 
 static uint8_t fan_enabled[6] = {1, 1, 1, 1, 1, 1};
-static uint8_t temp_graph[4][2] = {{25, 10}, {100, 25}, {150, 50}, {220, 100}};
+static uint8_t temp_graph[4][2] = {{25, 10}, {30, 25}, {40, 50}, {50, 100}};
 
 void controlFanTemp(uint8_t *temp)
 {
@@ -33,9 +33,9 @@ void controlFanTemp(uint8_t *temp)
 void controlFanPot(uint8_t *potmeter)
 {
 	for (uint8_t fan = 0; fan != 6; fan++) {
-		volatile uint8_t *port = fanRegister(fan);
-		if (*port != potmeter[fan]) {
-			*port = potmeter[fan];
+		uint8_t port = *fanRegister(fan);
+		if (port != potmeter[fan]) {
+			port = potmeter[fan];
 		}
 	}
 }
