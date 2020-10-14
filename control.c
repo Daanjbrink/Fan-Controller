@@ -33,9 +33,9 @@ void controlFanTemp(uint8_t *temp)
 void controlFanPot(uint8_t *potmeter)
 {
 	for (uint8_t fan = 0; fan != 6; fan++) {
-		uint8_t port = *fanRegister(fan);
-		if (port != potmeter[fan]) {
-			port = potmeter[fan];
+		volatile uint8_t *port = fanRegister(fan);
+		if (*port != potmeter[fan]) {
+			*port = potmeter[fan];
 		}
 	}
 }
