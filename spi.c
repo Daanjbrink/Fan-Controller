@@ -7,7 +7,7 @@
 void spiInit()
 {
 	DDRB  = (1<<MOSI) | (1<<SCK); // Set all pins as output except MISO
-	PORTB |= (1<<TACHO); // Set chip select pins high
+	PORTB |= (1<<TACHO) | (1<<MCP); // Set chip select pins high
 	SPCR  = (1<<SPE) | (1<<DORD) | (1<<MSTR) | (1<<CPOL) | (1<<CPHA) | (1<<SPR0); // SPI enable, LSB first, Master mode, mode 1,1, 1 MHz clock
 }
 
@@ -19,7 +19,7 @@ void spiSelect(uint8_t port)
 
 void spiUnselect()
 {
-	PORTB |= (1<<TACHO);
+	PORTB |= (1<<TACHO) | (1<<MCP);
 }
 
 inline uint8_t spiTransfer(uint8_t data)
