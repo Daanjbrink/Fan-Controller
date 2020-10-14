@@ -11,8 +11,8 @@ void spiInit()
 
 inline uint8_t spiTransfer(uint8_t data)
 {
-	while (!(USISR & (1<<USIOIF))); // Wait until data is shifted in
 	USIDR = data; // Load the data register with the byte
+	while (!(USISR & (1<<USIOIF))); // Wait until data is shifted in
 	USISR |= (1<<USIOIF); // Clear flag
 	return USIBR; // Return incomming data
 }
