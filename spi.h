@@ -5,7 +5,8 @@
 
 #include <stdint.h>
 
-#define TACHO	PINB0
+#define TACHO	PINB1
+#define MCP   PINB2
 #define MOSI	PINB3
 #define MISO	PINB4
 #define SCK		PINB5
